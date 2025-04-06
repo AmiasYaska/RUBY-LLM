@@ -7,7 +7,11 @@ class TestimonialsController < ApplicationController
     @testimonial = params[:testimonial]
     @social_post = generate_social_post(@testimonial[:text])
     Rails.logger.info "Social post generated: #{@social_post.inspect}"
-    render :new
+    
+    respond_to do |format|
+      format.turbo_stream # Triggers Turbo Stream response
+      format.html { render :new } # Fallback
+    end
   end
 
   private

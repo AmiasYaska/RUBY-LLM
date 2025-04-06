@@ -1,7 +1,7 @@
 <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
   <h1 class="text-2xl font-bold text-gray-800 mb-6">Generate a Social Post</h1>
   
-  <%= form_with url: testimonials_path, method: :post, class: "space-y-4" do %>
+  <%= form_with url: testimonials_path, method: :post, class: "space-y-4", data: { turbo: true } do %>
     <div>
       <label for="testimonial_text" class="block text-sm font-medium text-gray-700">
         Enter Your Testimonial
@@ -13,11 +13,7 @@
     <%= submit_tag "Generate Post", class: "w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700" %>
   <% end %>
 
-  <% if @social_post.present? %>
-    <div class="mt-6 p-4 bg-gray-100 rounded-md">
-      <p class="text-lg font-semibold text-gray-800">Generated Social Post:</p>
-      <p class="text-gray-600"><%= @social_post %></p>
-      <p class="text-sm text-gray-500 mt-1">Character count: <%= @social_post.length %></p>
-    </div>
-  <% end %>
+  <div id="social-post-output">
+    <%# Initial empty state - will be populated by Turbo Stream %>
+  </div>
 </div>
